@@ -134,7 +134,7 @@ public class VagaService {
 			vagaExist.setSituacao("livre");
 			List<String> telefones = new ArrayList<>();
 			telefones.add(vagaExist.getPaciente().getTelefone());
-			MessageAWS notify = new MessageAWS("", "", vaga.getUser().getNomeHospital(), vaga.getLaudo(), telefones);
+			MessageAWS notify = new MessageAWS("", "", vaga.getPaciente().getNome(), vaga.getLaudo(), telefones);
 			okHttp.sendPOST(notify);
 			vagaExist.setPaciente(null);
 		}
