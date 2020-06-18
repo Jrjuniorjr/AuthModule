@@ -27,8 +27,6 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
     
-    @Autowired
-    RoleRepository r;
 
     @PutMapping("/user")
     public ResponseEntity<?> updateUser(@Valid @RequestBody User user){
@@ -70,20 +68,6 @@ public class UserController {
         return ResponseEntity.ok(userRepository.listAll());
 
     }
-    
-    @GetMapping("/insert")
-    public ResponseEntity<?> insert(){
-    	Role role = new Role();
-    	role.setName(ERole.ROLE_USER);
-    	r.save(role);
-    	role = new Role();
-    	role.setName(ERole.ROLE_MODERATOR);
-    	r.save(role);
-    	role = new Role();
-    	role.setName(ERole.ROLE_ADMIN);
-    	r.save(role);
-    	
-    	return ResponseEntity.ok("Ok");
-    }
+   
 
 }
