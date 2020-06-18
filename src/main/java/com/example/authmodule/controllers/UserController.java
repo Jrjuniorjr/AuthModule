@@ -1,6 +1,7 @@
 package com.example.authmodule.controllers;
 
 import com.example.authmodule.models.User;
+import com.example.authmodule.repository.RoleRepository;
 import com.example.authmodule.repository.UserRepository;
 import com.example.authmodule.security.payload.request.LoginRequest;
 
@@ -23,6 +24,9 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+    
+    @Autowired
+    RoleRepository r;
 
     @PutMapping("/user")
     public ResponseEntity<?> updateUser(@Valid @RequestBody User user){
@@ -63,6 +67,14 @@ public class UserController {
     public ResponseEntity<?> listAll(){
         return ResponseEntity.ok(userRepository.listAll());
 
+    }
+    
+    @GetMapping("/insert")
+    public ResponseEntity<?> insert(){
+    	r.insertRoleUser();
+    	r.insertRoleMod();
+    	r.insertRoleAdm();
+    	return ResponseEntity.ok("Ok");
     }
 
 }
