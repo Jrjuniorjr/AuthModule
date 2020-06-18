@@ -1,15 +1,19 @@
 package com.example.authmodule.services;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.example.authmodule.models.Historico;
+import com.example.authmodule.models.MessageAWS;
 import com.example.authmodule.models.Paciente;
 import com.example.authmodule.repository.HistoricoRepository;
 import com.example.authmodule.repository.PacienteRepository;
 import com.example.authmodule.security.payload.response.MessageResponse;
+import com.example.authmodule.utils.OkHttp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +35,8 @@ public class VagaService {
 	PacienteRepository pacienteRepository;
 	@Autowired
 	HistoricoRepository historicoRepository;
+	@Autowired
+	OkHttp okHttp;
 	
 	public ResponseEntity<?> cadastrarVaga(Vaga vaga) {
 
@@ -88,7 +94,7 @@ public class VagaService {
 
 	}
 
-	public ResponseEntity<?> editarVaga(Vaga vaga) {
+	public ResponseEntity<?> editarVaga(Vaga vaga) throws IOException {
 		
 		String laudo;
 
@@ -126,7 +132,10 @@ public class VagaService {
 
 		}else{
 			vagaExist.setSituacao("livre");
-			laudo = vagaExist.getLaudo();
+			List<String> telefones = new ArrayList<>();
+			telefones.add(vagaExist.getPaciente().getTelefone());
+			MessageAWS notify = new MessageAWS("", "", vaga.getUser().getNomeHospital(), vaga.getLaudo(), telefones);
+			okHttp.sendPOST(notify);
 			vagaExist.setPaciente(null);
 		}
 		

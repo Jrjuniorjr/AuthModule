@@ -1,5 +1,7 @@
 package com.example.authmodule.controllers;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -41,7 +43,7 @@ public class VagaController {
 		return vagaService.consultarVaga(id);
 	}
 	@PutMapping("/editar")
-	public ResponseEntity<?> editarVaga(@RequestBody Vaga vaga) {
+	public ResponseEntity<?> editarVaga(@RequestBody Vaga vaga) throws IOException {
 		return vagaService.editarVaga(vaga);
 	}
 
