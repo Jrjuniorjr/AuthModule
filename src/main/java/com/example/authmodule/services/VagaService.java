@@ -130,8 +130,6 @@ public class VagaService {
 			vagaExist.setPaciente(null);
 		}
 		
-		vagaExist.setLaudo(vaga.getLaudo());
-
 		vagaExist.setNumeroQuarto(vaga.getNumeroQuarto());
 		vagaExist.setDescricao(vaga.getDescricao());
 		vagaExist.getUser().setVagas(null);
