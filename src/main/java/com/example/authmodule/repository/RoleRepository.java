@@ -11,10 +11,5 @@ import java.util.Optional;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
     Optional<Role> findByName(ERole name);
-    @Query("INSERT INTO tb_roles(name) VALUES('ROLE_USER')")
-    void insertRoleUser();
-    @Query("INSERT INTO tb_roles(name) VALUES('ROLE_MOD')")
-    void insertRoleMod();
-    @Query("INSERT INTO tb_roles(name) VALUES('ROLE_ADMIN')")
-    void insertRoleAdm();
+    
 }

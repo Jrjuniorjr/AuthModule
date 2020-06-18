@@ -1,5 +1,7 @@
 package com.example.authmodule.controllers;
 
+import com.example.authmodule.models.ERole;
+import com.example.authmodule.models.Role;
 import com.example.authmodule.models.User;
 import com.example.authmodule.repository.RoleRepository;
 import com.example.authmodule.repository.UserRepository;
@@ -71,9 +73,16 @@ public class UserController {
     
     @GetMapping("/insert")
     public ResponseEntity<?> insert(){
-    	r.insertRoleUser();
-    	r.insertRoleMod();
-    	r.insertRoleAdm();
+    	Role role = new Role();
+    	role.setName(ERole.ROLE_USER);
+    	r.save(role);
+    	role = new Role();
+    	role.setName(ERole.ROLE_MODERATOR);
+    	r.save(role);
+    	role = new Role();
+    	role.setName(ERole.ROLE_ADMIN);
+    	r.save(role);
+    	
     	return ResponseEntity.ok("Ok");
     }
 
