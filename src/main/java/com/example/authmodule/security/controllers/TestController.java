@@ -22,15 +22,15 @@ public class TestController {
 
 	@GetMapping("/all")
 	public String allAccess() {
-		Role role = new Role();
-		role.setName(ERole.ROLE_USER);
-		r.save(role);
-		role = new Role();
-		role.setName(ERole.ROLE_MODERATOR);
-		r.save(role);
-		role = new Role();
-		role.setName(ERole.ROLE_ADMIN);
-		r.save(role);
+//		Role role = new Role();
+//		role.setName(ERole.ROLE_USER);
+//		r.save(role);
+//		role = new Role();
+//		role.setName(ERole.ROLE_MODERATOR);
+//		r.save(role);
+//		role = new Role();
+//		role.setName(ERole.ROLE_ADMIN);
+//		r.save(role);
 
 		return "Public Content.";
 	}
