@@ -35,8 +35,8 @@ public class VagaService {
 	PacienteRepository pacienteRepository;
 	@Autowired
 	HistoricoRepository historicoRepository;
-	@Autowired
-	OkHttp okHttp;
+	
+	OkHttp okHttp = new OkHttp();
 	
 	public ResponseEntity<?> cadastrarVaga(Vaga vaga) {
 
